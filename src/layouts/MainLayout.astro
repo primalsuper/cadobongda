@@ -1,0 +1,27 @@
+
+---
+import '../styles/global.css';
+const {
+ title='Cadobongda',
+ description='Portal berita modern',
+ canonical='https://cadobongda.org/'
+} = Astro.props;
+---
+
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+<slot />
+</body>
+</html>

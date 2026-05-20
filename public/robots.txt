@@ -1,0 +1,4 @@
+
+User-agent: *
+Allow: /
+Sitemap: https://cadobongda.org/sitemap-index.xml

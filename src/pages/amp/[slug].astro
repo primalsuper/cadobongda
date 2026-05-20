@@ -1,0 +1,38 @@
+
+---
+import { posts } from '../../content/posts';
+
+export async function getStaticPaths(){
+ return posts.map(post=>({
+  params:{slug:post.slug},
+  props:{post}
+ }));
+}
+
+const { post } = Astro.props;
+---
+
+<!doctype html>
+<html amp lang="id">
+<head>
+<meta charset="utf-8">
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+<title>{post.title}</title>
+<link rel="canonical" href={`https://cadobongda.org/artikel/${post.slug}/`} />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<style amp-custom>
+body{
+ background:#0d1117;
+ color:#fff;
+ font-family:Arial;
+ padding:20px;
+ line-height:1.8;
+}
+</style>
+</head>
+<body>
+<h1>{post.title}</h1>
+<p>{post.excerpt}</p>
+<div set:html={post.content}></div>
+</body>
+</html>

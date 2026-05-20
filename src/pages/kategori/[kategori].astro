@@ -1,0 +1,39 @@
+
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { posts } from '../../content/posts';
+
+export async function getStaticPaths(){
+ return [
+  {params:{kategori:'technology'}},
+  {params:{kategori:'ai'}},
+  {params:{kategori:'game'}},
+  {params:{kategori:'finance'}}
+ ]
+}
+
+const { kategori } = Astro.params;
+
+const filtered = posts.filter(
+ post => post.category.toLowerCase() === kategori
+);
+---
+
+<MainLayout title={`Kategori ${kategori}`}>
+<Header />
+
+<main class="container">
+ <h1 style="margin:30px 0;">Kategori {kategori}</h1>
+
+ <div class="news-grid">
+  {filtered.map(post => (
+   <NewsCard post={post} />
+  ))}
+ </div>
+</main>
+
+<Footer />
+</MainLayout>

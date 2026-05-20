@@ -1,0 +1,44 @@
+
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { posts } from '../../content/posts';
+
+export async function getStaticPaths(){
+ return posts.map(post=>({
+  params:{slug:post.slug},
+  props:{post}
+ }));
+}
+
+const { post } = Astro.props;
+---
+
+<MainLayout
+ title={post.title}
+ description={post.excerpt}
+ canonical={`https://cadobongda.org/artikel/${post.slug}/`}
+>
+<Header />
+
+<main class="container">
+ <div class="grid">
+  <article class="article">
+   <div class="card">
+    <img src={post.image} alt={post.title} />
+    <div class="content">
+     <h1>{post.title}</h1>
+     <p>{post.author} - {post.date}</p>
+     <div set:html={post.content}></div>
+    </div>
+   </div>
+  </article>
+
+  <Sidebar />
+ </div>
+</main>
+
+<Footer />
+</MainLayout>

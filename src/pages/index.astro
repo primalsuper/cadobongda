@@ -1,0 +1,40 @@
+
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import NewsCard from '../components/NewsCard.astro';
+import { posts } from '../content/posts';
+---
+
+<MainLayout
+ title="Cadobongda - Portal Berita Modern"
+ description="Portal berita teknologi AI finance modern"
+>
+<Header />
+
+<main class="container">
+ <div class="grid">
+  <section>
+   <div class="card">
+    <img src="/images/default.webp" alt="hero" />
+    <div class="content">
+     <h1>Portal Berita Modern Ultra SEO</h1>
+     <p>Cadobongda menghadirkan pengalaman membaca cepat dan ringan.</p>
+    </div>
+   </div>
+
+   <div class="news-grid">
+    {posts.map(post => (
+      <NewsCard post={post} />
+    ))}
+   </div>
+  </section>
+
+  <Sidebar />
+ </div>
+</main>
+
+<Footer />
+</MainLayout>
